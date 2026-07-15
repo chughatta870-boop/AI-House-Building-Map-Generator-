@@ -335,3 +335,297 @@ padding:12px;
 }
 
 }
+/* ===================================================
+   AI House Building Map Generator
+   style.css - Part 2
+   Plot Information + House Requirements + AI Panel
+===================================================*/
+
+/* ---------- PLOT INFORMATION ---------- */
+
+.plot-information,
+.house-requirements,
+.ai-design-panel,
+.project-management,
+.saved-projects,
+.settings-panel,
+.ai-status-panel,
+.map-preview-section{
+
+    margin-top:20px;
+
+}
+
+/* ---------- Direction Grid ---------- */
+
+.direction-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:12px;
+
+    margin-top:15px;
+
+}
+
+.direction-grid label{
+
+    background:#f5f5f5;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    border:1px solid #ddd;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.direction-grid label:hover{
+
+    background:#e3f2fd;
+
+    border-color:var(--primary);
+
+}
+
+/* ---------- AI BUTTONS ---------- */
+
+.ai-buttons{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+.ai-buttons button{
+
+    flex:1;
+
+    min-width:180px;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    font-weight:bold;
+
+}
+
+.ai-buttons button:hover{
+
+    background:var(--primary-dark);
+
+}
+
+/* ---------- PROJECT BUTTONS ---------- */
+
+.project-buttons{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+    gap:15px;
+
+}
+
+.project-buttons button{
+
+    background:var(--secondary);
+
+    color:#fff;
+
+    font-weight:bold;
+
+}
+
+.project-buttons button:hover{
+
+    filter:brightness(90%);
+
+}
+
+/* ---------- SAVED PROJECTS ---------- */
+
+#savedProjectsList{
+
+    min-height:120px;
+
+    border:2px dashed var(--border);
+
+    border-radius:12px;
+
+    padding:20px;
+
+    background:#fafafa;
+
+    overflow:auto;
+
+}
+
+/* ---------- PREVIEW TOOLBAR ---------- */
+
+.preview-toolbar{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-bottom:20px;
+
+}
+
+.preview-toolbar button{
+
+    background:#eceff1;
+
+    color:#333;
+
+    font-weight:bold;
+
+}
+
+.preview-toolbar button:hover{
+
+    background:#cfd8dc;
+
+}
+
+/* ---------- CANVAS ---------- */
+
+.canvas-wrapper{
+
+    width:100%;
+
+    overflow:auto;
+
+    background:#fff;
+
+    border:2px solid #ddd;
+
+    border-radius:12px;
+
+    padding:15px;
+
+    margin-bottom:20px;
+
+}
+
+#floorPlanCanvas{
+
+    display:block;
+
+    margin:auto;
+
+    max-width:100%;
+
+    height:auto;
+
+    background:#ffffff;
+
+    border:1px solid #bbb;
+
+}
+
+/* ---------- PREVIEW ACTION BUTTONS ---------- */
+
+.preview-actions{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+}
+
+.preview-actions button{
+
+    flex:1;
+
+    min-width:180px;
+
+    background:var(--success);
+
+    color:#fff;
+
+    font-weight:bold;
+
+}
+
+.preview-actions button:hover{
+
+    filter:brightness(92%);
+
+}
+
+/* ---------- AI STATUS ---------- */
+
+.status-card{
+
+    background:#f7f9fb;
+
+    border-left:5px solid var(--primary);
+
+    padding:20px;
+
+    border-radius:10px;
+
+}
+
+.status-card p{
+
+    margin:10px 0;
+
+}
+
+progress{
+
+    width:100%;
+
+    height:22px;
+
+    margin-top:10px;
+
+}
+
+/* ---------- FOOTER ---------- */
+
+.footer{
+
+    background:var(--primary-dark);
+
+    color:#fff;
+
+    text-align:center;
+
+    padding:30px 20px;
+
+    margin-top:40px;
+
+}
+
+.footer h3{
+
+    margin-bottom:10px;
+
+}
+
+.footer p{
+
+    margin:5px 0;
+
+}
