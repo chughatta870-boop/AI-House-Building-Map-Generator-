@@ -1,0 +1,337 @@
+/* ===================================================
+   AI House Building Map Generator
+   Premium PWA
+   style.css - Part 1
+=================================================== */
+
+/* ---------- RESET ---------- */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* ---------- ROOT VARIABLES ---------- */
+
+:root{
+
+    --primary:#1565c0;
+    --primary-dark:#0d47a1;
+
+    --secondary:#26a69a;
+
+    --success:#2e7d32;
+
+    --danger:#d32f2f;
+
+    --warning:#f9a825;
+
+    --light:#f5f7fa;
+
+    --white:#ffffff;
+
+    --dark:#222;
+
+    --gray:#666;
+
+    --border:#dcdcdc;
+
+    --radius:12px;
+
+    --shadow:0 5px 15px rgba(0,0,0,.15);
+
+}
+
+/* ---------- BODY ---------- */
+
+body{
+
+    font-family:Arial,Helvetica,sans-serif;
+
+    background:var(--light);
+
+    color:var(--dark);
+
+    line-height:1.5;
+
+}
+
+/* ---------- APP ---------- */
+
+#app{
+
+    width:100%;
+
+    min-height:100vh;
+
+}
+
+/* ---------- HEADER ---------- */
+
+.top-header{
+
+    background:linear-gradient(135deg,
+    var(--primary),
+    var(--primary-dark));
+
+    color:white;
+
+    padding:20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    box-shadow:var(--shadow);
+
+}
+
+.logo-area h1{
+
+    font-size:30px;
+
+    margin-bottom:8px;
+
+}
+
+.logo-area p{
+
+    opacity:.9;
+
+}
+
+.header-buttons{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+/* ---------- BUTTON ---------- */
+
+button{
+
+    cursor:pointer;
+
+    border:none;
+
+    border-radius:var(--radius);
+
+    padding:12px 18px;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+#installBtn{
+
+    background:white;
+
+    color:var(--primary);
+
+    font-weight:bold;
+
+}
+
+#themeBtn{
+
+    background:#222;
+
+    color:white;
+
+}
+
+/* ---------- NAVIGATION ---------- */
+
+.main-nav{
+
+    display:flex;
+
+    gap:10px;
+
+    overflow:auto;
+
+    padding:15px;
+
+    background:white;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+
+}
+
+.nav-btn{
+
+    background:#e3f2fd;
+
+    color:#1565c0;
+
+    white-space:nowrap;
+
+}
+
+.nav-btn.active{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+/* ---------- MAIN ---------- */
+
+main{
+
+    padding:20px;
+
+}
+
+/* ---------- CARD ---------- */
+
+section{
+
+    background:white;
+
+    margin-bottom:20px;
+
+    border-radius:var(--radius);
+
+    padding:20px;
+
+    box-shadow:var(--shadow);
+
+}
+
+section h2{
+
+    color:var(--primary);
+
+    margin-bottom:18px;
+
+}
+
+section h3{
+
+    margin:18px 0 10px;
+
+}
+
+/* ---------- GRID ---------- */
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(240px,1fr));
+
+    gap:18px;
+
+}
+
+/* ---------- FORM ---------- */
+
+.field{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.field label{
+
+    margin-bottom:8px;
+
+    font-weight:bold;
+
+}
+
+.field input,
+
+.field select,
+
+.field textarea{
+
+    padding:12px;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:15px;
+
+}
+
+.field input:focus,
+
+.field select:focus,
+
+.field textarea:focus{
+
+    border-color:var(--primary);
+
+}
+
+/* ---------- QUICK ACTIONS ---------- */
+
+.quick-actions{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+}
+
+.quick-actions button{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media(max-width:768px){
+
+.top-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:15px;
+
+}
+
+.logo-area h1{
+
+font-size:24px;
+
+}
+
+main{
+
+padding:12px;
+
+}
+
+}
