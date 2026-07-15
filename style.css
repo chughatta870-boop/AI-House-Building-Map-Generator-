@@ -836,3 +836,146 @@ button:active{
     }
 
    }
+/* ==========================================
+   style.css - Part 4 (Premium Enhancements)
+========================================== */
+
+/* ---------- Welcome Card ---------- */
+
+.welcome-card{
+    border-left:6px solid var(--primary);
+}
+
+.welcome-card p{
+    color:var(--gray);
+}
+
+/* ---------- Project Information ---------- */
+
+.project-info{
+    border-top:4px solid var(--secondary);
+}
+
+/* ---------- Form Controls ---------- */
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover{
+    border-color:var(--secondary);
+}
+
+.field input[type="number"]{
+    text-align:center;
+}
+
+/* ---------- Status Colors ---------- */
+
+.success{
+    color:#2e7d32;
+    font-weight:bold;
+}
+
+.warning{
+    color:#f9a825;
+    font-weight:bold;
+}
+
+.error{
+    color:#d32f2f;
+    font-weight:bold;
+}
+
+/* ---------- Canvas Wrapper ---------- */
+
+.canvas-wrapper{
+    position:relative;
+}
+
+.canvas-wrapper::before{
+    content:"AI Preview";
+    position:absolute;
+    top:10px;
+    right:10px;
+    background:rgba(21,101,192,.9);
+    color:#fff;
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+/* ---------- Progress ---------- */
+
+progress{
+    border-radius:10px;
+    overflow:hidden;
+}
+
+/* ---------- Utility Classes ---------- */
+
+.text-center{
+    text-align:center;
+}
+
+.mt-10{
+    margin-top:10px;
+}
+
+.mt-20{
+    margin-top:20px;
+}
+
+.mb-10{
+    margin-bottom:10px;
+}
+
+.mb-20{
+    margin-bottom:20px;
+}
+
+.hidden{
+    display:none !important;
+}
+
+/* ---------- Fade Animation ---------- */
+
+.fade-in{
+    animation:fadeIn .5s ease;
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+/* ---------- Scale Animation ---------- */
+
+.scale-up{
+    animation:scaleUp .35s ease;
+}
+
+@keyframes scaleUp{
+
+    from{
+        transform:scale(.95);
+    }
+
+    to{
+        transform:scale(1);
+    }
+
+}
+
+/* ---------- Footer ---------- */
+
+.footer{
+    letter-spacing:.5px;
+}
+
+/* ---------- End of CSS ---------- */
