@@ -182,3 +182,102 @@ placeholder="Country">
 </div>
 
 </section>
+<!-- ============================= -->
+<!-- Plot Information Section -->
+<!-- ============================= -->
+
+<section class="plot-information">
+
+    <h2>📐 Plot Information</h2>
+
+    <div class="grid">
+
+        <div class="field">
+            <label for="marla">Plot Size (Marla)</label>
+            <input type="number" id="marla" min="1" placeholder="e.g. 5">
+        </div>
+
+        <div class="field">
+            <label for="length">Length (Feet)</label>
+            <input type="number" id="length" min="1" placeholder="e.g. 45">
+        </div>
+
+        <div class="field">
+            <label for="width">Width (Feet)</label>
+            <input type="number" id="width" min="1" placeholder="e.g. 25">
+        </div>
+
+        <div class="field">
+            <label for="stories">Stories</label>
+            <select id="stories">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label for="roadWidth">Front Road Width (Feet)</label>
+            <input type="number" id="roadWidth" placeholder="30">
+        </div>
+
+        <div class="field">
+            <label for="frontSpace">Front Open Space</label>
+            <input type="number" id="frontSpace" placeholder="5">
+        </div>
+
+        <div class="field">
+            <label for="backSpace">Back Open Space</label>
+            <input type="number" id="backSpace" placeholder="3">
+        </div>
+
+        <div class="field">
+            <label for="leftSpace">Left Open Space</label>
+            <input type="number" id="leftSpace" placeholder="2">
+        </div>
+
+        <div class="field">
+            <label for="rightSpace">Right Open Space</label>
+            <input type="number" id="rightSpace" placeholder="2">
+        </div>
+
+    </div>
+
+    <h3>Plot Direction</h3>
+
+    <div class="direction-grid">
+
+        <label><input type="radio" name="direction" value="North" checked> North Facing</label>
+
+        <label><input type="radio" name="direction" value="South"> South Facing</label>
+
+        <label><input type="radio" name="direction" value="East"> East Facing</label>
+
+        <label><input type="radio" name="direction" value="West"> West Facing</label>
+
+    </div>
+
+    <h3>Plot Type</h3>
+
+    <div class="direction-grid">
+
+        <label>
+            <input type="checkbox" id="cornerPlot">
+            Corner Plot
+        </label>
+
+        <label>
+            <input type="checkbox" id="commercialFacing">
+            Commercial Facing
+        </label>
+
+        <label>
+            <input type="checkbox" id="parkFacing">
+            Park Facing
+        </label>
+
+    </div>
+
+  </section>
