@@ -504,3 +504,104 @@ placeholder="Country">
     </div>
 
                 </section>
+<!-- ========================================= -->
+<!-- MAP PREVIEW & CANVAS SECTION -->
+<!-- ========================================= -->
+
+<section class="map-preview-section">
+
+    <h2>🗺️ AI Floor Plan Preview</h2>
+
+    <div class="preview-toolbar">
+
+        <button id="zoomInBtn">🔍 +</button>
+
+        <button id="zoomOutBtn">🔍 −</button>
+
+        <button id="fitScreenBtn">📐 Fit Screen</button>
+
+        <button id="gridToggleBtn"># Grid</button>
+
+        <button id="labelsToggleBtn">🏷 Labels</button>
+
+        <button id="dimensionToggleBtn">📏 Dimensions</button>
+
+        <button id="fullscreenBtn">⛶ Full Screen</button>
+
+    </div>
+
+    <div class="canvas-wrapper">
+
+        <canvas
+            id="floorPlanCanvas"
+            width="1200"
+            height="900">
+            Your browser does not support HTML5 Canvas.
+        </canvas>
+
+    </div>
+
+    <div class="preview-actions">
+
+        <button id="generatePlanBtn">
+            🤖 Generate Plan
+        </button>
+
+        <button id="redrawPlanBtn">
+            🔄 Redraw
+        </button>
+
+        <button id="clearCanvasBtn">
+            🧹 Clear Canvas
+        </button>
+
+        <button id="saveImageBtn">
+            🖼 Save PNG
+        </button>
+
+        <button id="downloadPdfBtn">
+            📄 Download PDF
+        </button>
+
+        <button id="printPlanBtn">
+            🖨 Print
+        </button>
+
+        <button id="sharePlanBtn">
+            📤 Share
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- AI STATUS PANEL -->
+<!-- ========================================= -->
+
+<section class="ai-status-panel">
+
+    <h2>⚙ AI Processing Status</h2>
+
+    <div class="status-card">
+
+        <p>
+            <strong>Status:</strong>
+            <span id="aiStatus">
+                Ready
+            </span>
+        </p>
+
+        <progress
+            id="generationProgress"
+            value="0"
+            max="100">
+        </progress>
+
+        <p id="progressText">
+            Waiting for AI Layout Generation...
+        </p>
+
+    </div>
+
+    </section>
