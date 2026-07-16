@@ -563,3 +563,351 @@ if(generateButton){
     );
 
        }
+/* ==========================================
+   script.js - Part 3
+   Smart AI Layout Generator
+========================================== */
+
+
+/* ---------- FLOOR PLAN DATA ---------- */
+
+let generatedLayout = [];
+
+
+
+/* ---------- AI LAYOUT GENERATOR ---------- */
+
+
+function generateAILayout(){
+
+
+    const project = buildProject();
+
+
+    if(!project){
+
+        return;
+
+    }
+
+
+    generatedLayout = [];
+
+
+    const rooms = project.rooms;
+
+    const plot = project.plot;
+
+
+
+    let startX = 50;
+
+    let startY = 80;
+
+
+    let roomWidth = 180;
+
+    let roomHeight = 120;
+
+
+
+    // Scale adjustment according to plot size
+
+    if(plot.length > 50){
+
+        roomWidth = 220;
+
+    }
+
+
+    if(plot.width > 35){
+
+        roomHeight = 150;
+
+    }
+
+
+
+    /* ---------- Bedrooms ---------- */
+
+
+    for(
+        let i=1;
+        i<=rooms.bedrooms;
+        i++
+    ){
+
+        addRoom(
+
+            "Bedroom "+i,
+
+            startX,
+
+            startY,
+
+            roomWidth,
+
+            roomHeight
+
+        );
+
+
+        startX += roomWidth + 20;
+
+
+        if(startX > 850){
+
+            startX = 50;
+
+            startY += roomHeight + 30;
+
+        }
+
+    }
+
+
+
+    /* ---------- Kitchen ---------- */
+
+
+    for(
+        let i=1;
+        i<=rooms.kitchens;
+        i++
+    ){
+
+        addRoom(
+
+            "Kitchen "+i,
+
+            startX,
+
+            startY,
+
+            150,
+
+            100
+
+        );
+
+
+        startX +=170;
+
+    }
+
+
+
+    /* ---------- Washrooms ---------- */
+
+
+    for(
+        let i=1;
+        i<=rooms.washrooms;
+        i++
+    ){
+
+        addRoom(
+
+            "Washroom "+i,
+
+            startX,
+
+            startY,
+
+            100,
+
+            80
+
+        );
+
+
+        startX +=120;
+
+    }
+
+
+
+    /* ---------- Other Rooms ---------- */
+
+
+    createExtraRooms(
+        rooms,
+        startX,
+        startY
+    );
+
+
+
+    console.log(
+        "AI Layout Generated",
+        generatedLayout
+    );
+
+
+    drawFloorPlan();
+
+
+}
+
+
+
+/* ---------- ADD ROOM FUNCTION ---------- */
+
+
+function addRoom(
+    name,
+    x,
+    y,
+    width,
+    height
+){
+
+    generatedLayout.push({
+
+        name:name,
+
+        x:x,
+
+        y:y,
+
+        width:width,
+
+        height:height
+
+    });
+
+
+}
+
+
+
+/* ---------- EXTRA ROOMS ---------- */
+
+
+function createExtraRooms(
+    rooms,
+    x,
+    y
+){
+
+
+    const extras = [
+
+        [
+        "Drawing Room",
+        rooms.drawingRooms
+        ],
+
+        [
+        "TV Lounge",
+        rooms.tvLounges
+        ],
+
+        [
+        "Dining Room",
+        rooms.diningRooms
+        ],
+
+        [
+        "Guest Room",
+        rooms.guestRooms
+        ],
+
+        [
+        "Garage",
+        rooms.garage
+        ],
+
+        [
+        "Garden",
+        rooms.garden
+        ],
+
+        [
+        "Store",
+        rooms.storeRoom
+        ],
+
+        [
+        "Study Room",
+        rooms.studyRoom
+        ],
+
+        [
+        "Prayer Room",
+        rooms.prayerRoom
+        ]
+
+    ];
+
+
+
+    extras.forEach(item=>{
+
+
+        let name=item[0];
+
+        let count=item[1];
+
+
+        for(
+            let i=1;
+            i<=count;
+            i++
+        ){
+
+            addRoom(
+
+                name+" "+i,
+
+                x,
+
+                y,
+
+                160,
+
+                100
+
+            );
+
+
+            x +=180;
+
+
+            if(x>850){
+
+                x=50;
+
+                y+=130;
+
+            }
+
+        }
+
+
+    });
+
+
+}
+
+
+
+/* ---------- GENERATE BUTTON ---------- */
+
+
+const aiGenerateBtn =
+getElement("generateAI");
+
+
+if(aiGenerateBtn){
+
+    aiGenerateBtn.addEventListener(
+        "click",
+        ()=>{
+
+            generateAILayout();
+
+        }
+    );
+
+       }
