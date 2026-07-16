@@ -1230,3 +1230,402 @@ if(fullBtn){
     };
 
 }
+/* ==========================================
+   script.js - Part 5
+   Local Storage Project Manager
+========================================== */
+
+
+/* ---------- STORAGE KEY ---------- */
+
+
+const STORAGE_KEY =
+"AI_HOUSE_PROJECTS";
+
+
+
+/* ---------- GET ALL PROJECTS ---------- */
+
+
+function getSavedProjects(){
+
+    let projects =
+    localStorage.getItem(
+        STORAGE_KEY
+    );
+
+
+    if(projects){
+
+        return JSON.parse(projects);
+
+    }
+
+
+    return [];
+
+}
+
+
+
+/* ---------- SAVE PROJECT ---------- */
+
+
+function saveProject(){
+
+
+    const project =
+    buildProject();
+
+
+
+    if(!project){
+
+        return;
+
+    }
+
+
+
+    let projects =
+    getSavedProjects();
+
+
+
+    project.id =
+    Date.now();
+
+
+
+    projects.push(project);
+
+
+
+    localStorage.setItem(
+
+        STORAGE_KEY,
+
+        JSON.stringify(projects)
+
+    );
+
+
+
+    alert(
+    "Project Saved Successfully"
+    );
+
+
+
+    displaySavedProjects();
+
+}
+
+
+
+/* ---------- DISPLAY PROJECTS ---------- */
+
+
+function displaySavedProjects(){
+
+
+    const list =
+    getElement(
+        "savedProjectsList"
+    );
+
+
+
+    if(!list){
+
+        return;
+
+    }
+
+
+
+    let projects =
+    getSavedProjects();
+
+
+
+    if(projects.length===0){
+
+
+        list.innerHTML =
+        "<p>No saved projects found.</p>";
+
+
+        return;
+
+    }
+
+
+
+    list.innerHTML="";
+
+
+
+    projects.forEach(project=>{
+
+
+        let card =
+        document.createElement(
+            "div"
+        );
+
+
+
+        card.className =
+        "saved-card";
+
+
+
+        card.innerHTML = `
+
+        <h3>
+        ${project.name || "Untitled House"}
+        </h3>
+
+        <p>
+        Marla:
+        ${project.plot.marla}
+        </p>
+
+        <button onclick="openProject(${project.id})">
+        Open
+        </button>
+
+        <button onclick="deleteProject(${project.id})">
+        Delete
+        </button>
+
+        `;
+
+
+
+        list.appendChild(card);
+
+
+
+    });
+
+
+}
+
+
+
+/* ---------- OPEN PROJECT ---------- */
+
+
+function openProject(id){
+
+
+    let projects =
+    getSavedProjects();
+
+
+
+    let project =
+    projects.find(
+        p=>p.id===id
+    );
+
+
+
+    if(!project){
+
+        return;
+
+    }
+
+
+
+    houseProject =
+    project;
+
+
+
+    fillProjectForm();
+
+
+
+    alert(
+    "Project Loaded"
+    );
+
+
+
+}
+
+
+
+/* ---------- DELETE PROJECT ---------- */
+
+
+function deleteProject(id){
+
+
+    let projects =
+    getSavedProjects();
+
+
+
+    projects =
+    projects.filter(
+        p=>p.id!==id
+    );
+
+
+
+    localStorage.setItem(
+
+        STORAGE_KEY,
+
+        JSON.stringify(projects)
+
+    );
+
+
+
+    displaySavedProjects();
+
+
+
+    alert(
+    "Project Deleted"
+    );
+
+
+}
+
+
+
+/* ---------- FILL FORM ---------- */
+
+
+function fillProjectForm(){
+
+
+    if(!houseProject){
+
+        return;
+
+    }
+
+
+
+    if(getElement("projectName"))
+
+    getElement("projectName").value =
+    houseProject.name || "";
+
+
+
+    if(getElement("ownerName"))
+
+    getElement("ownerName").value =
+    houseProject.owner || "";
+
+
+
+    if(houseProject.plot){
+
+
+        Object.keys(
+            houseProject.plot
+        ).forEach(key=>{
+
+
+            let field =
+            getElement(key);
+
+
+
+            if(field){
+
+                field.value =
+                houseProject.plot[key];
+
+            }
+
+
+        });
+
+
+    }
+
+
+}
+
+
+
+/* ---------- AUTO SAVE ---------- */
+
+
+setInterval(()=>{
+
+
+    if(houseProject.updated){
+
+
+        localStorage.setItem(
+
+            "AUTO_SAVE_PROJECT",
+
+            JSON.stringify(
+                houseProject
+            )
+
+        );
+
+
+    }
+
+
+},30000);
+
+
+
+/* ---------- BUTTON CONNECTION ---------- */
+
+
+const saveBtn =
+getElement("btnSaveProject");
+
+
+if(saveBtn){
+
+    saveBtn.onclick =
+    saveProject;
+
+}
+
+
+
+const newBtn =
+getElement("btnNewProject");
+
+
+if(newBtn){
+
+    newBtn.onclick=()=>{
+
+
+        houseProject={};
+
+
+        alert(
+        "New Project Started"
+        );
+
+
+    };
+
+}
+
+
+
+/* Load Saved List */
+
+displaySavedProjects();
