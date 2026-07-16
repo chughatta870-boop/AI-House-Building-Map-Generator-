@@ -1942,3 +1942,280 @@ if(importInput){
     );
 
 }
+/* ==========================================
+   script.js - Part 7
+   Final Integration
+========================================== */
+
+
+/* ---------- REGENERATE AI LAYOUT ---------- */
+
+
+const regenerateBtn =
+getElement("regenerateAI");
+
+
+if(regenerateBtn){
+
+    regenerateBtn.onclick=()=>{
+
+
+        generateAILayout();
+
+
+        alert(
+        "AI Layout Regenerated"
+        );
+
+
+    };
+
+}
+
+
+
+/* ---------- CLEAR DESIGN ---------- */
+
+
+const clearBtn =
+getElement("clearDesign");
+
+
+if(clearBtn){
+
+    clearBtn.onclick=()=>{
+
+
+        generatedLayout=[];
+
+
+        drawEmptyCanvas();
+
+
+        alert(
+        "Design Cleared"
+        );
+
+
+    };
+
+}
+
+
+
+/* ---------- REDRAW PLAN ---------- */
+
+
+const redrawBtn =
+getElement("redrawPlanBtn");
+
+
+if(redrawBtn){
+
+    redrawBtn.onclick=()=>{
+
+
+        drawFloorPlan();
+
+
+    };
+
+}
+
+
+
+/* ---------- CLEAR CANVAS ---------- */
+
+
+const clearCanvas =
+getElement("clearCanvasBtn");
+
+
+if(clearCanvas){
+
+    clearCanvas.onclick=()=>{
+
+
+        if(ctx){
+
+
+            ctx.clearRect(
+
+            0,
+
+            0,
+
+            canvas.width,
+
+            canvas.height
+
+            );
+
+
+        }
+
+
+    };
+
+}
+
+
+
+/* ---------- SAVE IMAGE BUTTON ---------- */
+
+
+const saveImage =
+getElement("saveImageBtn");
+
+
+if(saveImage){
+
+    saveImage.onclick =
+    downloadPNG;
+
+}
+
+
+
+/* ---------- SHARE PLAN ---------- */
+
+
+const sharePlan =
+getElement("sharePlanBtn");
+
+
+if(sharePlan){
+
+    sharePlan.onclick =
+    shareProject;
+
+}
+
+
+
+/* ---------- PDF SUPPORT ---------- */
+
+
+const pdfBtn =
+getElement("downloadPdfBtn");
+
+
+if(pdfBtn){
+
+    pdfBtn.onclick=()=>{
+
+
+        window.print();
+
+
+    };
+
+}
+
+
+
+/* ---------- NEW PROJECT ---------- */
+
+
+const newProjectBtn =
+getElement("btnNewProject");
+
+
+if(newProjectBtn){
+
+    newProjectBtn.onclick=()=>{
+
+
+        document
+        .querySelectorAll("input")
+        .forEach(input=>{
+
+
+            if(
+            input.type!=="checkbox" &&
+            input.type!=="radio"
+            ){
+
+                input.value="";
+
+            }
+
+
+        });
+
+
+
+        generatedLayout=[];
+
+
+        drawEmptyCanvas();
+
+
+    };
+
+}
+
+
+
+/* ---------- SERVICE WORKER ---------- */
+
+
+if(
+"serviceWorker" in navigator
+){
+
+
+    window.addEventListener(
+        "load",
+        ()=>{
+
+
+            navigator.serviceWorker
+            .register(
+                "sw.js"
+            )
+
+            .then(()=>{
+
+
+                console.log(
+                "Service Worker Registered"
+                );
+
+
+            })
+
+            .catch(error=>{
+
+
+                console.log(
+                "SW Error",
+                error
+                );
+
+
+            });
+
+
+        }
+    );
+
+
+}
+
+
+
+/* ---------- FINAL READY MESSAGE ---------- */
+
+
+window.addEventListener(
+"load",
+()=>{
+
+
+    console.log(
+    "🏠 AI House Building Map Generator Ready"
+    );
+
+
+});
