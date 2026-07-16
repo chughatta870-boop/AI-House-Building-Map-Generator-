@@ -1,0 +1,41 @@
+{
+  "name": "AI House Building Map Generator",
+  "short_name": "AI House Map",
+  "description": "Smart AI based house building map and floor plan generator PWA",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#1565c0",
+  "background_color": "#f5f7fa",
+
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+
+  "categories": [
+    "productivity",
+    "design",
+    "utilities"
+  ],
+
+  "screenshots": [],
+
+  "shortcuts": [
+    {
+      "name": "Create New House Map",
+      "short_name": "New Map",
+      "url": "./index.html"
+    }
+  ]
+}
