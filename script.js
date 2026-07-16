@@ -911,3 +911,322 @@ if(aiGenerateBtn){
     );
 
        }
+/* ==========================================
+   script.js - Part 4
+   Canvas Drawing Engine
+========================================== */
+
+
+/* ---------- DRAW FLOOR PLAN ---------- */
+
+
+function drawFloorPlan(){
+
+    if(!ctx || !canvas){
+
+        return;
+
+    }
+
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    ctx.save();
+
+
+    ctx.scale(
+        zoomLevel,
+        zoomLevel
+    );
+
+
+
+    if(showGrid){
+
+        drawGrid();
+
+    }
+
+
+
+    generatedLayout.forEach(room=>{
+
+
+        drawRoom(room);
+
+
+    });
+
+
+
+    ctx.restore();
+
+
+
+}
+
+
+
+/* ---------- DRAW GRID ---------- */
+
+
+function drawGrid(){
+
+
+    const size = 40;
+
+
+    ctx.strokeStyle="#e0e0e0";
+
+    ctx.lineWidth=1;
+
+
+
+    for(
+        let x=0;
+        x<canvas.width;
+        x+=size
+    ){
+
+        ctx.beginPath();
+
+        ctx.moveTo(x,0);
+
+        ctx.lineTo(
+            x,
+            canvas.height
+        );
+
+        ctx.stroke();
+
+    }
+
+
+
+    for(
+        let y=0;
+        y<canvas.height;
+        y+=size
+    ){
+
+        ctx.beginPath();
+
+        ctx.moveTo(0,y);
+
+        ctx.lineTo(
+            canvas.width,
+            y
+        );
+
+        ctx.stroke();
+
+    }
+
+
+}
+
+
+
+/* ---------- DRAW ROOM ---------- */
+
+
+function drawRoom(room){
+
+
+    ctx.strokeStyle="#1565c0";
+
+    ctx.lineWidth=3;
+
+
+    ctx.strokeRect(
+
+        room.x,
+
+        room.y,
+
+        room.width,
+
+        room.height
+
+    );
+
+
+
+    if(showLabels){
+
+
+        ctx.fillStyle="#222";
+
+        ctx.font="16px Arial";
+
+
+        ctx.fillText(
+
+            room.name,
+
+            room.x+10,
+
+            room.y+30
+
+        );
+
+
+    }
+
+
+
+}
+
+
+
+/* ---------- ZOOM CONTROLS ---------- */
+
+
+const zoomIn =
+getElement("zoomInBtn");
+
+
+if(zoomIn){
+
+    zoomIn.onclick=()=>{
+
+
+        zoomLevel +=0.1;
+
+
+        drawFloorPlan();
+
+
+    };
+
+}
+
+
+
+const zoomOut =
+getElement("zoomOutBtn");
+
+
+if(zoomOut){
+
+    zoomOut.onclick=()=>{
+
+
+        if(zoomLevel>0.5){
+
+            zoomLevel-=0.1;
+
+        }
+
+
+        drawFloorPlan();
+
+
+    };
+
+}
+
+
+
+/* ---------- GRID TOGGLE ---------- */
+
+
+const gridBtn =
+getElement("gridToggleBtn");
+
+
+if(gridBtn){
+
+    gridBtn.onclick=()=>{
+
+
+        showGrid =
+        !showGrid;
+
+
+        drawFloorPlan();
+
+
+    };
+
+}
+
+
+
+/* ---------- LABEL TOGGLE ---------- */
+
+
+const labelBtn =
+getElement("labelsToggleBtn");
+
+
+if(labelBtn){
+
+    labelBtn.onclick=()=>{
+
+
+        showLabels =
+        !showLabels;
+
+
+        drawFloorPlan();
+
+
+    };
+
+}
+
+
+
+/* ---------- FIT SCREEN ---------- */
+
+
+const fitBtn =
+getElement("fitScreenBtn");
+
+
+if(fitBtn){
+
+    fitBtn.onclick=()=>{
+
+
+        zoomLevel=1;
+
+
+        drawFloorPlan();
+
+
+    };
+
+}
+
+
+
+/* ---------- FULL SCREEN ---------- */
+
+
+const fullBtn =
+getElement("fullscreenBtn");
+
+
+if(fullBtn){
+
+    fullBtn.onclick=()=>{
+
+
+        if(canvas.requestFullscreen){
+
+            canvas.requestFullscreen();
+
+        }
+
+
+    };
+
+}
