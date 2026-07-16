@@ -1629,3 +1629,316 @@ if(newBtn){
 /* Load Saved List */
 
 displaySavedProjects();
+/* ==========================================
+   script.js - Part 6
+   Export / Share / Download Functions
+========================================== */
+
+
+/* ---------- SHARE PROJECT ---------- */
+
+
+function shareProject(){
+
+    const data = {
+
+        title:
+        houseProject.name || 
+        "AI House Plan",
+
+        text:
+        "My AI Generated House Layout",
+
+        url:
+        window.location.href
+
+    };
+
+
+    if(navigator.share){
+
+
+        navigator.share(data)
+
+        .then(()=>{
+
+            console.log(
+            "Shared Successfully"
+            );
+
+        })
+
+        .catch(error=>{
+
+            console.log(error);
+
+        });
+
+
+    }
+
+    else{
+
+
+        alert(
+        "Sharing not supported on this device"
+        );
+
+
+    }
+
+
+}
+
+
+
+/* ---------- DOWNLOAD PNG ---------- */
+
+
+function downloadPNG(){
+
+
+    if(!canvas){
+
+        return;
+
+    }
+
+
+
+    const image =
+    canvas.toDataURL(
+        "image/png"
+    );
+
+
+
+    const link =
+    document.createElement(
+        "a"
+    );
+
+
+
+    link.href=image;
+
+
+    link.download =
+    "AI-House-Plan.png";
+
+
+
+    link.click();
+
+
+}
+
+
+
+/* ---------- PRINT PLAN ---------- */
+
+
+function printPlan(){
+
+
+    window.print();
+
+
+}
+
+
+
+/* ---------- EXPORT JSON ---------- */
+
+
+function exportJSON(){
+
+
+    const data =
+    JSON.stringify(
+        houseProject,
+        null,
+        2
+    );
+
+
+
+    const blob =
+    new Blob(
+        [data],
+        {
+            type:
+            "application/json"
+        }
+    );
+
+
+
+    const url =
+    URL.createObjectURL(blob);
+
+
+
+    const link =
+    document.createElement(
+        "a"
+    );
+
+
+    link.href=url;
+
+
+    link.download =
+    "house-project.json";
+
+
+
+    link.click();
+
+
+
+}
+
+
+
+/* ---------- IMPORT JSON ---------- */
+
+
+function importJSON(event){
+
+
+    const file =
+    event.target.files[0];
+
+
+
+    if(!file){
+
+        return;
+
+    }
+
+
+
+    const reader =
+    new FileReader();
+
+
+
+    reader.onload=function(e){
+
+
+        try{
+
+
+            houseProject =
+            JSON.parse(
+                e.target.result
+            );
+
+
+            alert(
+            "Project Imported Successfully"
+            );
+
+
+            fillProjectForm();
+
+
+
+        }
+
+
+        catch(error){
+
+
+            alert(
+            "Invalid File"
+            );
+
+
+        }
+
+
+    };
+
+
+
+    reader.readAsText(file);
+
+
+
+}
+
+
+
+/* ---------- CONNECT BUTTONS ---------- */
+
+
+const shareBtn =
+getElement("btnShareProject");
+
+
+if(shareBtn){
+
+    shareBtn.onclick =
+    shareProject;
+
+}
+
+
+
+const pngBtn =
+getElement("btnDownloadPNG");
+
+
+if(pngBtn){
+
+    pngBtn.onclick =
+    downloadPNG;
+
+}
+
+
+
+const printBtn =
+getElement("printPlanBtn");
+
+
+if(printBtn){
+
+    printBtn.onclick =
+    printPlan;
+
+}
+
+
+
+const exportBtn =
+getElement("btnExportJson");
+
+
+if(exportBtn){
+
+    exportBtn.onclick =
+    exportJSON;
+
+}
+
+
+
+/* ---------- IMPORT INPUT ---------- */
+
+
+const importInput =
+getElement("importJsonFile");
+
+
+if(importInput){
+
+    importInput.addEventListener(
+        "change",
+        importJSON
+    );
+
+}
