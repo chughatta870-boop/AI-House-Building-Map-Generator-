@@ -251,3 +251,315 @@ console.log(
 "App Ready",
 houseProject
 );
+/* ==========================================
+   script.js - Part 2
+   Form Data + Project Builder
+========================================== */
+
+
+/* ---------- SAFE VALUE FUNCTION ---------- */
+
+function getValue(id){
+
+    const element = getElement(id);
+
+    if(element){
+
+        return element.value;
+
+    }
+
+    return "";
+
+}
+
+
+function getNumber(id){
+
+    const value = Number(getValue(id));
+
+    return isNaN(value) ? 0 : value;
+
+}
+
+
+/* ---------- GET PLOT INFORMATION ---------- */
+
+
+function getPlotInformation(){
+
+    return {
+
+        marla:getNumber("marla"),
+
+        length:getNumber("length"),
+
+        width:getNumber("width"),
+
+        stories:getNumber("stories"),
+
+        roadWidth:getNumber("roadWidth"),
+
+        frontSpace:getNumber("frontSpace"),
+
+        backSpace:getNumber("backSpace"),
+
+        leftSpace:getNumber("leftSpace"),
+
+        rightSpace:getNumber("rightSpace"),
+
+        direction:
+        document.querySelector(
+        'input[name="direction"]:checked'
+        )?.value || "North",
+
+        corner:
+        getElement("cornerPlot")?.checked || false,
+
+        commercial:
+        getElement("commercialFacing")?.checked || false,
+
+        parkFacing:
+        getElement("parkFacing")?.checked || false
+
+    };
+
+}
+
+
+
+/* ---------- GET ROOMS INFORMATION ---------- */
+
+
+function getRoomInformation(){
+
+    return {
+
+        bedrooms:getNumber("bedrooms"),
+
+        masterBedrooms:getNumber("masterBedrooms"),
+
+        kitchens:getNumber("kitchens"),
+
+        washrooms:getNumber("washrooms"),
+
+        drawingRooms:getNumber("drawingRooms"),
+
+        tvLounges:getNumber("tvLounges"),
+
+        diningRooms:getNumber("diningRooms"),
+
+        guestRooms:getNumber("guestRooms"),
+
+        garage:getNumber("garage"),
+
+        garden:getNumber("garden"),
+
+        storeRoom:getNumber("storeRoom"),
+
+        studyRoom:getNumber("studyRoom"),
+
+        prayerRoom:getNumber("prayerRoom"),
+
+        servantRoom:getNumber("servantRoom"),
+
+        stairs:getNumber("stairs"),
+
+        lift:getNumber("lift"),
+
+        balcony:getNumber("balcony"),
+
+        terrace:getNumber("terrace")
+
+    };
+
+}
+
+
+
+/* ---------- GET AI SETTINGS ---------- */
+
+
+function getAISettings(){
+
+    return {
+
+        style:
+        getValue("designStyle"),
+
+        construction:
+        getValue("constructionType"),
+
+        view:
+        getValue("viewMode"),
+
+        floor:
+        getValue("floorSelect"),
+
+
+        optimize:
+        getElement("optimizeRooms")?.checked || false,
+
+
+        parking:
+        getElement("maximizeParking")?.checked || false,
+
+
+        garden:
+        getElement("maximizeGarden")?.checked || false,
+
+
+        light:
+        getElement("naturalLight")?.checked || false,
+
+
+        ventilation:
+        getElement("crossVentilation")?.checked || false,
+
+
+        energy:
+        getElement("energySaving")?.checked || false,
+
+
+        vastu:
+        getElement("vastuMode")?.checked || false
+
+    };
+
+}
+
+
+
+/* ---------- VALIDATION ---------- */
+
+
+function validateProject(){
+
+    const length =
+    getNumber("length");
+
+
+    const width =
+    getNumber("width");
+
+
+    const marla =
+    getNumber("marla");
+
+
+    if(
+        length<=0 ||
+        width<=0 ||
+        marla<=0
+    ){
+
+        alert(
+        "Please enter valid Plot Size, Length and Width"
+        );
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+
+/* ---------- BUILD PROJECT OBJECT ---------- */
+
+
+function buildProject(){
+
+
+    if(!validateProject()){
+
+        return null;
+
+    }
+
+
+    houseProject = {
+
+
+        name:
+        getValue("projectName"),
+
+
+        owner:
+        getValue("ownerName"),
+
+
+        city:
+        getValue("city"),
+
+
+        country:
+        getValue("country"),
+
+
+        plot:
+        getPlotInformation(),
+
+
+        rooms:
+        getRoomInformation(),
+
+
+        design:
+        getAISettings(),
+
+
+        updated:
+        new Date().toISOString()
+
+
+    };
+
+
+    console.log(
+    "Project Created",
+    houseProject
+    );
+
+
+    return houseProject;
+
+}
+
+
+
+/* ---------- CONNECT GENERATE BUTTON ---------- */
+
+
+const generateButton =
+getElement("generateAI");
+
+
+if(generateButton){
+
+    generateButton.addEventListener(
+        "click",
+        ()=>{
+
+
+            const project =
+            buildProject();
+
+
+            if(project){
+
+                alert(
+                "Project data ready for AI Layout Generation"
+                );
+
+
+            }
+
+
+        }
+    );
+
+       }
